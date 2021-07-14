@@ -6,6 +6,7 @@ public class PlayerShipMovement : MonoBehaviour
 {
     [SerializeField] private Transform _shipModel;
     [SerializeField] private Transform _crosshair;
+    [SerializeField] private float _moveSpeed = 1f;
 
     private PlayerInput _playerInput;
 
@@ -29,7 +30,7 @@ public class PlayerShipMovement : MonoBehaviour
         var input = _playerInput.CombatMovement.Movement.ReadValue<Vector2>();
         if (input.magnitude > 0.0f)
         {
-            transform.position += new Vector3(input.x, input.y, 0.0f);
+            transform.position += new Vector3(input.x, input.y, 0.0f) * _moveSpeed;
         }
     }
 

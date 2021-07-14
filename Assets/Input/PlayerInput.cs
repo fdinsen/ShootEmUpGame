@@ -109,7 +109,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
             ""id"": ""f6553863-75f7-4f33-982a-a811b5575b84"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
+                    ""name"": ""Movement"",
                     ""type"": ""Button"",
                     ""id"": ""a6b95178-543f-423b-9ae8-e412e7676fcb"",
                     ""expectedControlType"": ""Button"",
@@ -119,15 +119,59 @@ public class @PlayerInput : IInputActionCollection, IDisposable
             ],
             ""bindings"": [
                 {
-                    ""name"": """",
-                    ""id"": ""fb4f7e25-5d0e-41a8-a434-67908fde8d98"",
-                    ""path"": """",
+                    ""name"": ""2D Vector"",
+                    ""id"": ""1502c51c-2aa8-4326-a019-9826d2070109"",
+                    ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
-                    ""isComposite"": false,
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""1c063604-cf2f-4f20-9a08-86fc5c4268c7"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""c40f5cb6-1821-46f0-9483-4597fb688500"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""f0220fbf-e1de-4848-bda2-41a9020db9a5"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""913b29eb-05c8-40ee-86a3-96f3ddd2d660"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -140,7 +184,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         m_CombatMovement_Mouse = m_CombatMovement.FindAction("Mouse", throwIfNotFound: true);
         // 2DMovement
         m__2DMovement = asset.FindActionMap("2DMovement", throwIfNotFound: true);
-        m__2DMovement_Newaction = m__2DMovement.FindAction("New action", throwIfNotFound: true);
+        m__2DMovement_Movement = m__2DMovement.FindAction("Movement", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -231,12 +275,12 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     // 2DMovement
     private readonly InputActionMap m__2DMovement;
     private I_2DMovementActions m__2DMovementActionsCallbackInterface;
-    private readonly InputAction m__2DMovement_Newaction;
+    private readonly InputAction m__2DMovement_Movement;
     public struct _2DMovementActions
     {
         private @PlayerInput m_Wrapper;
         public _2DMovementActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m__2DMovement_Newaction;
+        public InputAction @Movement => m_Wrapper.m__2DMovement_Movement;
         public InputActionMap Get() { return m_Wrapper.m__2DMovement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -246,16 +290,16 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m__2DMovementActionsCallbackInterface != null)
             {
-                @Newaction.started -= m_Wrapper.m__2DMovementActionsCallbackInterface.OnNewaction;
-                @Newaction.performed -= m_Wrapper.m__2DMovementActionsCallbackInterface.OnNewaction;
-                @Newaction.canceled -= m_Wrapper.m__2DMovementActionsCallbackInterface.OnNewaction;
+                @Movement.started -= m_Wrapper.m__2DMovementActionsCallbackInterface.OnMovement;
+                @Movement.performed -= m_Wrapper.m__2DMovementActionsCallbackInterface.OnMovement;
+                @Movement.canceled -= m_Wrapper.m__2DMovementActionsCallbackInterface.OnMovement;
             }
             m_Wrapper.m__2DMovementActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Newaction.started += instance.OnNewaction;
-                @Newaction.performed += instance.OnNewaction;
-                @Newaction.canceled += instance.OnNewaction;
+                @Movement.started += instance.OnMovement;
+                @Movement.performed += instance.OnMovement;
+                @Movement.canceled += instance.OnMovement;
             }
         }
     }
@@ -267,6 +311,6 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     }
     public interface I_2DMovementActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnMovement(InputAction.CallbackContext context);
     }
 }

@@ -1,19 +1,7 @@
 fileFormatVersion: 2
-guid: a83ebcb294087164c829d42358f60938
+guid: e806e71470754da4fa12f75fe1c665f6
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 3222759865109357614
-    second: Main Character Face front 32x64_0
-  - first:
-      213: 1399710347034446265
-    second: Main Character Face front 32x64_1
-  - first:
-      213: 8521995922908880856
-    second: Main Character Face front 32x64_2
-  - first:
-      213: 5583944542841667052
-    second: Main Character Face front 32x64_3
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -53,12 +41,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 4
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,91 +101,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: Main Character Face front 32x64_0
-      rect:
-        serializedVersion: 2
-        x: 3
-        y: 3
-        width: 26
-        height: 58
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e24aa3cb50b89bc20800000000000000
-      internalID: 3222759865109357614
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Main Character Face front 32x64_1
-      rect:
-        serializedVersion: 2
-        x: 35
-        y: 3
-        width: 26
-        height: 58
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9b94d670525cc6310800000000000000
-      internalID: 1399710347034446265
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Main Character Face front 32x64_2
-      rect:
-        serializedVersion: 2
-        x: 67
-        y: 3
-        width: 26
-        height: 58
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8df9f42f326344670800000000000000
-      internalID: 8521995922908880856
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Main Character Face front 32x64_3
-      rect:
-        serializedVersion: 2
-        x: 99
-        y: 3
-        width: 26
-        height: 58
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cedfe890af72e7d40800000000000000
-      internalID: 5583944542841667052
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []

@@ -96,7 +96,7 @@
             "id": "f6553863-75f7-4f33-982a-a811b5575b84",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "Movement",
                     "type": "Button",
                     "id": "a6b95178-543f-423b-9ae8-e412e7676fcb",
                     "expectedControlType": "Button",
@@ -106,15 +106,59 @@
             ],
             "bindings": [
                 {
-                    "name": "",
-                    "id": "fb4f7e25-5d0e-41a8-a434-67908fde8d98",
-                    "path": "",
+                    "name": "2D Vector",
+                    "id": "1502c51c-2aa8-4326-a019-9826d2070109",
+                    "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
-                    "isComposite": false,
+                    "action": "Movement",
+                    "isComposite": true,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "1c063604-cf2f-4f20-9a08-86fc5c4268c7",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "c40f5cb6-1821-46f0-9483-4597fb688500",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "f0220fbf-e1de-4848-bda2-41a9020db9a5",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "913b29eb-05c8-40ee-86a3-96f3ddd2d660",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }
