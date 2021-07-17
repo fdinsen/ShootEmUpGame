@@ -2,15 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerShipMovement : MonoBehaviour
+public class PlayerShipRotation : MonoBehaviour
 {
-    [SerializeField] private Transform _shipModel;
     [SerializeField] private Transform _crosshair;
-    [SerializeField] private float _moveSpeed = 1f;
 
     private PlayerInput _playerInput;
 
-    void Awake()
+    // Start is called before the first frame update
+    void Start()
     {
         _playerInput = new PlayerInput();
         _playerInput.CombatMovement.Enable();
@@ -18,20 +17,10 @@ public class PlayerShipMovement : MonoBehaviour
         _crosshair.parent = null;
     }
 
-    // FixedUpdate is called 50 times per second
+    // Update is called once per frame
     void FixedUpdate()
     {
-        MovePlayer();
         RotateTowardsMousePointer();
-    }
-
-    private void MovePlayer()
-    {
-        var input = _playerInput.CombatMovement.Movement.ReadValue<Vector2>();
-        if (input.magnitude > 0.0f)
-        {
-            transform.position += new Vector3(input.x, input.y, 0.0f) * _moveSpeed;
-        }
     }
 
     private void RotateTowardsMousePointer()
@@ -46,6 +35,4 @@ public class PlayerShipMovement : MonoBehaviour
         float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
         transform.eulerAngles = new Vector3(0, 0, angle);
     }
-
-    //private Vector3  
 }
