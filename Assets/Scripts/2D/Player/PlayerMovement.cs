@@ -42,4 +42,16 @@ public class PlayerMovement : MonoBehaviour
     {
         _charContr.SimpleMove(moveBy * _moveSpeed);
     }
+
+    public void TogglePlayerMovement(bool toEnable)
+    {
+        if(toEnable)
+        {
+            _playerInput._2DMovement.Movement.Enable();
+        } else
+        {
+            _playerInput._2DMovement.Movement.Disable();
+        }
+            
+    }
 }

@@ -134,6 +134,14 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""91bc04a4-0d35-4cc4-8229-545f218be567"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -191,6 +199,17 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a366b1c2-85e0-4118-884f-bc4597e38e76"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -205,6 +224,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         // 2DMovement
         m__2DMovement = asset.FindActionMap("2DMovement", throwIfNotFound: true);
         m__2DMovement_Movement = m__2DMovement.FindAction("Movement", throwIfNotFound: true);
+        m__2DMovement_Interact = m__2DMovement.FindAction("Interact", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -304,11 +324,13 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     private readonly InputActionMap m__2DMovement;
     private I_2DMovementActions m__2DMovementActionsCallbackInterface;
     private readonly InputAction m__2DMovement_Movement;
+    private readonly InputAction m__2DMovement_Interact;
     public struct _2DMovementActions
     {
         private @PlayerInput m_Wrapper;
         public _2DMovementActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m__2DMovement_Movement;
+        public InputAction @Interact => m_Wrapper.m__2DMovement_Interact;
         public InputActionMap Get() { return m_Wrapper.m__2DMovement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -321,6 +343,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Movement.started -= m_Wrapper.m__2DMovementActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m__2DMovementActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m__2DMovementActionsCallbackInterface.OnMovement;
+                @Interact.started -= m_Wrapper.m__2DMovementActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m__2DMovementActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m__2DMovementActionsCallbackInterface.OnInteract;
             }
             m_Wrapper.m__2DMovementActionsCallbackInterface = instance;
             if (instance != null)
@@ -328,6 +353,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
             }
         }
     }
@@ -341,5 +369,6 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     public interface I_2DMovementActions
     {
         void OnMovement(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
 }
