@@ -33,6 +33,14 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""PrimaryAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""686d132b-943c-4538-9351-cff979f9b301"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -101,6 +109,17 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""action"": ""Mouse"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""68fcbef4-4b01-4e36-839b-696bc82eace2"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PrimaryAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -112,6 +131,14 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""name"": ""Movement"",
                     ""type"": ""Button"",
                     ""id"": ""a6b95178-543f-423b-9ae8-e412e7676fcb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""91bc04a4-0d35-4cc4-8229-545f218be567"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -172,6 +199,17 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a366b1c2-85e0-4118-884f-bc4597e38e76"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -182,9 +220,11 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         m_CombatMovement = asset.FindActionMap("CombatMovement", throwIfNotFound: true);
         m_CombatMovement_Movement = m_CombatMovement.FindAction("Movement", throwIfNotFound: true);
         m_CombatMovement_Mouse = m_CombatMovement.FindAction("Mouse", throwIfNotFound: true);
+        m_CombatMovement_PrimaryAttack = m_CombatMovement.FindAction("PrimaryAttack", throwIfNotFound: true);
         // 2DMovement
         m__2DMovement = asset.FindActionMap("2DMovement", throwIfNotFound: true);
         m__2DMovement_Movement = m__2DMovement.FindAction("Movement", throwIfNotFound: true);
+        m__2DMovement_Interact = m__2DMovement.FindAction("Interact", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -236,12 +276,14 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     private ICombatMovementActions m_CombatMovementActionsCallbackInterface;
     private readonly InputAction m_CombatMovement_Movement;
     private readonly InputAction m_CombatMovement_Mouse;
+    private readonly InputAction m_CombatMovement_PrimaryAttack;
     public struct CombatMovementActions
     {
         private @PlayerInput m_Wrapper;
         public CombatMovementActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_CombatMovement_Movement;
         public InputAction @Mouse => m_Wrapper.m_CombatMovement_Mouse;
+        public InputAction @PrimaryAttack => m_Wrapper.m_CombatMovement_PrimaryAttack;
         public InputActionMap Get() { return m_Wrapper.m_CombatMovement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -257,6 +299,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Mouse.started -= m_Wrapper.m_CombatMovementActionsCallbackInterface.OnMouse;
                 @Mouse.performed -= m_Wrapper.m_CombatMovementActionsCallbackInterface.OnMouse;
                 @Mouse.canceled -= m_Wrapper.m_CombatMovementActionsCallbackInterface.OnMouse;
+                @PrimaryAttack.started -= m_Wrapper.m_CombatMovementActionsCallbackInterface.OnPrimaryAttack;
+                @PrimaryAttack.performed -= m_Wrapper.m_CombatMovementActionsCallbackInterface.OnPrimaryAttack;
+                @PrimaryAttack.canceled -= m_Wrapper.m_CombatMovementActionsCallbackInterface.OnPrimaryAttack;
             }
             m_Wrapper.m_CombatMovementActionsCallbackInterface = instance;
             if (instance != null)
@@ -267,6 +312,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Mouse.started += instance.OnMouse;
                 @Mouse.performed += instance.OnMouse;
                 @Mouse.canceled += instance.OnMouse;
+                @PrimaryAttack.started += instance.OnPrimaryAttack;
+                @PrimaryAttack.performed += instance.OnPrimaryAttack;
+                @PrimaryAttack.canceled += instance.OnPrimaryAttack;
             }
         }
     }
@@ -276,11 +324,13 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     private readonly InputActionMap m__2DMovement;
     private I_2DMovementActions m__2DMovementActionsCallbackInterface;
     private readonly InputAction m__2DMovement_Movement;
+    private readonly InputAction m__2DMovement_Interact;
     public struct _2DMovementActions
     {
         private @PlayerInput m_Wrapper;
         public _2DMovementActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m__2DMovement_Movement;
+        public InputAction @Interact => m_Wrapper.m__2DMovement_Interact;
         public InputActionMap Get() { return m_Wrapper.m__2DMovement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -293,6 +343,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Movement.started -= m_Wrapper.m__2DMovementActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m__2DMovementActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m__2DMovementActionsCallbackInterface.OnMovement;
+                @Interact.started -= m_Wrapper.m__2DMovementActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m__2DMovementActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m__2DMovementActionsCallbackInterface.OnInteract;
             }
             m_Wrapper.m__2DMovementActionsCallbackInterface = instance;
             if (instance != null)
@@ -300,6 +353,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
             }
         }
     }
@@ -308,9 +364,11 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnMouse(InputAction.CallbackContext context);
+        void OnPrimaryAttack(InputAction.CallbackContext context);
     }
     public interface I_2DMovementActions
     {
         void OnMovement(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
 }
