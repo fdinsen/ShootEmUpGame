@@ -8,18 +8,22 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float fireSpeed = 5f;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private float _destroyAfterSeconds = 3f;
+
+    private int _damage = 0;
     
-    public void Fire(Vector3 dir)
+    public void Fire(Vector3 dir, int damage)
     {
+        _damage = damage;
         rb.velocity = dir * fireSpeed;
         Destroy(gameObject, _destroyAfterSeconds);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.layer == 3 ) //Enemy
         {
-            Destroy(other.gameObject);
+            other.gameObject.GetComponent<IHealthHandler>().DealDamage(_damage);
         }
     }
+
 }

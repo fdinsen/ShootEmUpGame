@@ -12,6 +12,7 @@ public class DialogueHandler : MonoBehaviour
     public static event DialogueEvent DoDialogue;
 
     private PlayerMovement _movement;
+    private Queue<string> _currentDialogueQueue;
 
     // Start is called before the first frame update
     void Awake()

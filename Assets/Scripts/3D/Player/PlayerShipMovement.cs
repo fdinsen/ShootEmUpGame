@@ -16,7 +16,7 @@ public class PlayerShipMovement : MonoBehaviour
     }
 
     // FixedUpdate is called 50 times per second
-    void FixedUpdate()
+    void Update()
     {
         MovePlayer();
     }
@@ -26,7 +26,11 @@ public class PlayerShipMovement : MonoBehaviour
         var input = _playerInput.CombatMovement.Movement.ReadValue<Vector2>();
         if (input.magnitude > 0.0f)
         {
-            transform.position += new Vector3(input.x, input.y, 0.0f) * _moveSpeed;
+            transform.position += new Vector3(input.x, input.y, 0.0f) * _moveSpeed * Time.deltaTime;
         }
+    }
+    public Vector2 GetPlayerInput()
+    {
+        return _playerInput.CombatMovement.Movement.ReadValue<Vector2>();
     }
 }

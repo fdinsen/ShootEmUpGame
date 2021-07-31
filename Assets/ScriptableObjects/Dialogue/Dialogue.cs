@@ -10,4 +10,5 @@ public class Dialogue : ScriptableObject
     [TextArea] public string content;
 
     public Dialogue nextDialogue = null;
+
 }

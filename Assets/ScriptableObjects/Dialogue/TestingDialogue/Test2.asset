@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: NPC
   content: This is the second piece of dialogue
-  nextDialogue: {fileID: 0}
+  nextDialogue: {fileID: 11400000, guid: 8a82b9fdd80eacd4a846c870c27b4f4c, type: 2}

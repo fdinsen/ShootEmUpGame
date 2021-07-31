@@ -5,9 +5,7 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class PlayerShipShooting : MonoBehaviour
 {
-    [SerializeField] private GameObject _projectile;
-    [SerializeField] private float _shootInterval = 0.1f;
-    [SerializeField] private Transform _fireFrom;
+    [SerializeField] private ShootingAction _primaryShooting;
 
     private PlayerInput _playerInput;
     private bool _primaryHeld = false;
@@ -43,14 +41,8 @@ public class PlayerShipShooting : MonoBehaviour
     {
         while(_primaryHeld)
         {
-            ShootProjectile(transform.right);
-            yield return new WaitForSeconds(_shootInterval);
+            _primaryShooting.Shoot(transform.right);
+            yield return new WaitForSeconds(_primaryShooting.GetShootInterval());
         }
-    }
-
-    void ShootProjectile(Vector3 dir)
-    {
-        var projectile = Instantiate(_projectile, _fireFrom.position, transform.rotation) as GameObject;
-        projectile.GetComponentInChildren<Projectile>().Fire(dir);
     }
 }
