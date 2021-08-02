@@ -30,9 +30,25 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Ability",
+                    "name": "AbilitySlot1",
                     "type": "Button",
                     "id": "9f8a4996-c18b-4362-9870-021641c1892b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "AbilitySlot2",
+                    "type": "Button",
+                    "id": "09dffea9-ddc1-436a-98a5-dfd26df47120",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "AbilitySlot3",
+                    "type": "Button",
+                    "id": "e6d4f420-d7ab-4d3b-9447-5dbf15b2a044",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
@@ -123,7 +139,29 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Ability",
+                    "action": "AbilitySlot1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8a414279-98f4-462d-b3d7-0289745e8a42",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AbilitySlot2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "42118d55-0af6-4219-96ce-dd2859f3465b",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AbilitySlot3",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

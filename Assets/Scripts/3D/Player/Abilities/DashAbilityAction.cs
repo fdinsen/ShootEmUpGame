@@ -13,6 +13,9 @@ public class DashAbilityAction : AbilityAction
     public override void PerformAbility()
     {
         Vector2 playerInput = _playerMovement.GetPlayerInput();
+        if (playerInput == Vector2.zero)
+            return;
+
         _ship.position = new Vector3(transform.position.x + playerInput.x * _dashDistance, transform.position.y + playerInput.y * _dashDistance, transform.position.z);
     }
 

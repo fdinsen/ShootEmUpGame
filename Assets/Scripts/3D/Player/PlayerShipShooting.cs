@@ -9,10 +9,12 @@ public class PlayerShipShooting : MonoBehaviour
 
     private PlayerInput _playerInput;
     private bool _primaryHeld = false;
+    private Collider _shipCollider;
 
     // Start is called before the first frame update
     void Awake()
     {
+        _shipCollider = GetComponentInParent<Collider>();
         _playerInput = new PlayerInput();
         _playerInput.CombatMovement.Enable();
         _playerInput._2DMovement.Disable();
@@ -41,7 +43,7 @@ public class PlayerShipShooting : MonoBehaviour
     {
         while(_primaryHeld)
         {
-            _primaryShooting.Shoot(transform.right);
+            _primaryShooting.Shoot(transform.right, _shipCollider);
             yield return new WaitForSeconds(_primaryShooting.GetShootInterval());
         }
     }

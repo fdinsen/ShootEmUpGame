@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class DoubleShootingAction : ShootingAction
 {
-    public override void Shoot(Vector3 dir)
+    public override void Shoot(Vector3 dir, Collider parentCol)
     {
         var projectile1 = Instantiate(_projectile, _fireFrom[0].position, transform.rotation) as GameObject;
-        projectile1.GetComponentInChildren<Projectile>().Fire(dir, 10);
+        projectile1.GetComponentInChildren<Projectile>().Fire(dir, 10, parentCol);
         var projectile2 = Instantiate(_projectile, _fireFrom[1].position, transform.rotation) as GameObject;
-        projectile2.GetComponentInChildren<Projectile>().Fire(dir, 10);
+        projectile2.GetComponentInChildren<Projectile>().Fire(dir, 10, parentCol);
     }
     // Start is called before the first frame update
     void Start()

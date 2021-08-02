@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1275186941031548568}
   m_Layer: 0
   m_Name: Projectile
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -129,7 +129,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireSpeed: 100
   rb: {fileID: 4619366239037908618}
+  col: {fileID: 8717916019613840429}
   _destroyAfterSeconds: 3
+  _layersToTarget:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!96 &1275186941031548568
 TrailRenderer:
   serializedVersion: 2
@@ -192,8 +196,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0, b: 0.01845169, a: 1}
-      key1: {r: 1, g: 0.2688679, b: 0.2688679, a: 1}
+      key0: {r: 0, g: 1, b: 0.0579381, a: 1}
+      key1: {r: 0.55769056, g: 1, b: 0.5518868, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}

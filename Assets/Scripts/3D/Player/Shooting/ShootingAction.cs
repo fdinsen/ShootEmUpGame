@@ -9,7 +9,7 @@ public abstract class ShootingAction : MonoBehaviour
     [SerializeField] protected float _shootInterval = 0.1f;
     [SerializeField] protected Transform[] _fireFrom;
 
-    public abstract void Shoot(Vector3 dir);
+    public abstract void Shoot(Vector3 dir, Collider parentCol);
 
     public float GetShootInterval()
     {

@@ -13,12 +13,16 @@ public class EnemyShootingHandler : MonoBehaviour
     private int _shotsLeft;
     private float _volleyCooldown;
     private float _shotCooldown;
+    private Transform _player;
+    private Collider _col;
     // Start is called before the first frame update
     void Start()
     {
         _shotsLeft = _numberOfShotsInEachVolley;
         _volleyCooldown = _cooldownBetweenVolleys;
         _shotCooldown = _shotInterval;
+        _player = GameObject.FindGameObjectWithTag("Player").transform;
+        _col = GetComponent<Collider>();
     }
 
     // Update is called once per frame
@@ -41,9 +45,17 @@ public class EnemyShootingHandler : MonoBehaviour
                 _shotsLeft--;
 
                 var projectile = Instantiate(_projectile, _fireFrom.position, transform.rotation) as GameObject;
-                projectile.GetComponentInChildren<Projectile>().Fire(transform.right, 10);
+                projectile.GetComponentInChildren<Projectile>().Fire
+                    (GetDirectionTowardsObject(transform.position, _player.position)
+                    , 10 //Damage
+                    ,_col);
             }
         }
         
+    }
+
+    Vector3 GetDirectionTowardsObject(Vector3 origin, Vector3 target)
+    {
+        return (target - origin).normalized;
     }
 }

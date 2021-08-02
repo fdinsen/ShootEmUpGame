@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class PlayerShipAbilityHandler : MonoBehaviour
 {
-    [SerializeField] private AbilityAction _abilityAction;
+    [SerializeField] private AbilityAction _abilityActionSlot1;
+    [SerializeField] private AbilityAction _abilityActionSlot2;
+    [SerializeField] private AbilityAction _abilityActionSlot3;
 
-    private float _abilityActionCooldown = 0f;
+    private float[] _abilityActionCooldowns = {0f,0f,0f};
     private PlayerInput _playerInput;
 
     // Start is called before the first frame update
@@ -15,23 +17,33 @@ public class PlayerShipAbilityHandler : MonoBehaviour
         _playerInput = new PlayerInput();
         _playerInput.CombatMovement.Enable();
         _playerInput._2DMovement.Disable();
-        _playerInput.CombatMovement.Ability.performed += ctx => UseAbility();
+        _playerInput.CombatMovement.AbilitySlot1.performed += ctx => UseAbility(_abilityActionSlot1, 0);
+        _playerInput.CombatMovement.AbilitySlot2.performed += ctx => UseAbility(_abilityActionSlot2, 1);
+        _playerInput.CombatMovement.AbilitySlot3.performed += ctx => UseAbility(_abilityActionSlot3, 2);
     }
     
-    void UseAbility()
+    void UseAbility(AbilityAction action, int cooldownIndex)
     {
-        if(_abilityActionCooldown <= 0f)
+        if(_abilityActionCooldowns[cooldownIndex] <= 0f)
         {
-            _abilityAction.PerformAbility();
-            _abilityActionCooldown = _abilityAction.GetAbilityCooldown();
+            action.PerformAbility();
+            _abilityActionCooldowns[cooldownIndex] = _abilityActionSlot1.GetAbilityCooldown();
         }
     }
 
-    private void Update()
+    void Update()
     {
-        if(_abilityActionCooldown > 0f)
+        CountDownCooldownList(_abilityActionCooldowns);
+    }
+
+    void CountDownCooldownList(float[] listOfCooldowns)
+    {
+        for (int i = 0; i < listOfCooldowns.Length; i++)
         {
-            _abilityActionCooldown -= Time.deltaTime;
+            if (listOfCooldowns[i] > 0f)
+            {
+                listOfCooldowns[i] -= Time.deltaTime;
+            }
         }
     }
 }

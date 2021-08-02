@@ -38,9 +38,11 @@ public class SceneHandler : MonoBehaviour
 
         do
         {
+            await Task.Delay(100); //TODO remove this line for build
             _target = scene.progress + 0.1f;
         } while (scene.progress < 0.9f);
 
+        await Task.Delay(1000); //TODO remove this line for build
         scene.allowSceneActivation = true;
         _loadingCanvas.SetActive(false);
     }

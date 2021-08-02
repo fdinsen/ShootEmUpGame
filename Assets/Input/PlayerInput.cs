@@ -43,9 +43,25 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Ability"",
+                    ""name"": ""AbilitySlot1"",
                     ""type"": ""Button"",
                     ""id"": ""9f8a4996-c18b-4362-9870-021641c1892b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""AbilitySlot2"",
+                    ""type"": ""Button"",
+                    ""id"": ""09dffea9-ddc1-436a-98a5-dfd26df47120"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""AbilitySlot3"",
+                    ""type"": ""Button"",
+                    ""id"": ""e6d4f420-d7ab-4d3b-9447-5dbf15b2a044"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
@@ -136,7 +152,29 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Ability"",
+                    ""action"": ""AbilitySlot1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8a414279-98f4-462d-b3d7-0289745e8a42"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AbilitySlot2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""42118d55-0af6-4219-96ce-dd2859f3465b"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AbilitySlot3"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -240,7 +278,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         m_CombatMovement_Movement = m_CombatMovement.FindAction("Movement", throwIfNotFound: true);
         m_CombatMovement_Mouse = m_CombatMovement.FindAction("Mouse", throwIfNotFound: true);
         m_CombatMovement_PrimaryAttack = m_CombatMovement.FindAction("PrimaryAttack", throwIfNotFound: true);
-        m_CombatMovement_Ability = m_CombatMovement.FindAction("Ability", throwIfNotFound: true);
+        m_CombatMovement_AbilitySlot1 = m_CombatMovement.FindAction("AbilitySlot1", throwIfNotFound: true);
+        m_CombatMovement_AbilitySlot2 = m_CombatMovement.FindAction("AbilitySlot2", throwIfNotFound: true);
+        m_CombatMovement_AbilitySlot3 = m_CombatMovement.FindAction("AbilitySlot3", throwIfNotFound: true);
         // 2DMovement
         m__2DMovement = asset.FindActionMap("2DMovement", throwIfNotFound: true);
         m__2DMovement_Movement = m__2DMovement.FindAction("Movement", throwIfNotFound: true);
@@ -297,7 +337,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     private readonly InputAction m_CombatMovement_Movement;
     private readonly InputAction m_CombatMovement_Mouse;
     private readonly InputAction m_CombatMovement_PrimaryAttack;
-    private readonly InputAction m_CombatMovement_Ability;
+    private readonly InputAction m_CombatMovement_AbilitySlot1;
+    private readonly InputAction m_CombatMovement_AbilitySlot2;
+    private readonly InputAction m_CombatMovement_AbilitySlot3;
     public struct CombatMovementActions
     {
         private @PlayerInput m_Wrapper;
@@ -305,7 +347,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         public InputAction @Movement => m_Wrapper.m_CombatMovement_Movement;
         public InputAction @Mouse => m_Wrapper.m_CombatMovement_Mouse;
         public InputAction @PrimaryAttack => m_Wrapper.m_CombatMovement_PrimaryAttack;
-        public InputAction @Ability => m_Wrapper.m_CombatMovement_Ability;
+        public InputAction @AbilitySlot1 => m_Wrapper.m_CombatMovement_AbilitySlot1;
+        public InputAction @AbilitySlot2 => m_Wrapper.m_CombatMovement_AbilitySlot2;
+        public InputAction @AbilitySlot3 => m_Wrapper.m_CombatMovement_AbilitySlot3;
         public InputActionMap Get() { return m_Wrapper.m_CombatMovement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -324,9 +368,15 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @PrimaryAttack.started -= m_Wrapper.m_CombatMovementActionsCallbackInterface.OnPrimaryAttack;
                 @PrimaryAttack.performed -= m_Wrapper.m_CombatMovementActionsCallbackInterface.OnPrimaryAttack;
                 @PrimaryAttack.canceled -= m_Wrapper.m_CombatMovementActionsCallbackInterface.OnPrimaryAttack;
-                @Ability.started -= m_Wrapper.m_CombatMovementActionsCallbackInterface.OnAbility;
-                @Ability.performed -= m_Wrapper.m_CombatMovementActionsCallbackInterface.OnAbility;
-                @Ability.canceled -= m_Wrapper.m_CombatMovementActionsCallbackInterface.OnAbility;
+                @AbilitySlot1.started -= m_Wrapper.m_CombatMovementActionsCallbackInterface.OnAbilitySlot1;
+                @AbilitySlot1.performed -= m_Wrapper.m_CombatMovementActionsCallbackInterface.OnAbilitySlot1;
+                @AbilitySlot1.canceled -= m_Wrapper.m_CombatMovementActionsCallbackInterface.OnAbilitySlot1;
+                @AbilitySlot2.started -= m_Wrapper.m_CombatMovementActionsCallbackInterface.OnAbilitySlot2;
+                @AbilitySlot2.performed -= m_Wrapper.m_CombatMovementActionsCallbackInterface.OnAbilitySlot2;
+                @AbilitySlot2.canceled -= m_Wrapper.m_CombatMovementActionsCallbackInterface.OnAbilitySlot2;
+                @AbilitySlot3.started -= m_Wrapper.m_CombatMovementActionsCallbackInterface.OnAbilitySlot3;
+                @AbilitySlot3.performed -= m_Wrapper.m_CombatMovementActionsCallbackInterface.OnAbilitySlot3;
+                @AbilitySlot3.canceled -= m_Wrapper.m_CombatMovementActionsCallbackInterface.OnAbilitySlot3;
             }
             m_Wrapper.m_CombatMovementActionsCallbackInterface = instance;
             if (instance != null)
@@ -340,9 +390,15 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @PrimaryAttack.started += instance.OnPrimaryAttack;
                 @PrimaryAttack.performed += instance.OnPrimaryAttack;
                 @PrimaryAttack.canceled += instance.OnPrimaryAttack;
-                @Ability.started += instance.OnAbility;
-                @Ability.performed += instance.OnAbility;
-                @Ability.canceled += instance.OnAbility;
+                @AbilitySlot1.started += instance.OnAbilitySlot1;
+                @AbilitySlot1.performed += instance.OnAbilitySlot1;
+                @AbilitySlot1.canceled += instance.OnAbilitySlot1;
+                @AbilitySlot2.started += instance.OnAbilitySlot2;
+                @AbilitySlot2.performed += instance.OnAbilitySlot2;
+                @AbilitySlot2.canceled += instance.OnAbilitySlot2;
+                @AbilitySlot3.started += instance.OnAbilitySlot3;
+                @AbilitySlot3.performed += instance.OnAbilitySlot3;
+                @AbilitySlot3.canceled += instance.OnAbilitySlot3;
             }
         }
     }
@@ -393,7 +449,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnMouse(InputAction.CallbackContext context);
         void OnPrimaryAttack(InputAction.CallbackContext context);
-        void OnAbility(InputAction.CallbackContext context);
+        void OnAbilitySlot1(InputAction.CallbackContext context);
+        void OnAbilitySlot2(InputAction.CallbackContext context);
+        void OnAbilitySlot3(InputAction.CallbackContext context);
     }
     public interface I_2DMovementActions
     {

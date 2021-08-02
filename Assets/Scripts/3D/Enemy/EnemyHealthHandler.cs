@@ -27,14 +27,8 @@ public class EnemyHealthHandler : MonoBehaviour, IHealthHandler
 
     public void HealHealth(int healBy)
     {
-        if (_health + healBy > _maxHealth)
-        {
-            _health = _maxHealth;
-        }
-        else
-        {
-            _health += healBy;
-        }
+        Mathf.Clamp(
+            (_health += healBy), 0, _maxHealth);
     }
 
     public void Die()
