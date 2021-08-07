@@ -293,6 +293,24 @@ MonoBehaviour:
   _cooldownBetweenVolleys: 5
   _projectile: {fileID: 4192153047362513730, guid: d756fdf3ef9c1b64f8f94e67334155e0, type: 3}
   _fireFrom: {fileID: 1469147354}
+--- !u!1 &251252004 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4042605792126358223, guid: afc48b8ac2b3cb94694c3686ef440158, type: 3}
+  m_PrefabInstance: {fileID: 4042605793724050187}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &251252005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 251252004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91e8f76a5a2411c40899f7b79e9448cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  routeToFollow: []
 --- !u!1 &443014325
 GameObject:
   m_ObjectHideFlags: 0
