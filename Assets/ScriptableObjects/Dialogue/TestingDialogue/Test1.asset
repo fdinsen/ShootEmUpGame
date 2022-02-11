@@ -13,5 +13,9 @@ MonoBehaviour:
   m_Name: Test1
   m_EditorClassIdentifier: 
   characterName: NPC
-  content: This is the first piece of dialogue
+  content:
+  - Hi, welcome to the test area of the ship!
+  - This is the test of the dialogue system.
+  - This is the last piece of dialogue in this file. The box should close now, and
+    a different piece of dialogue should display next time you speak to this character.
   nextDialogue: {fileID: 11400000, guid: d56305fa573735d498ea4de3b7da089d, type: 2}

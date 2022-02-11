@@ -1,0 +1,36 @@
+.start-button {
+    font-size: 60%;
+    border-top-left-radius: 13px;
+    border-bottom-left-radius: 13px;
+    border-top-right-radius: 13px;
+    border-bottom-right-radius: 13px;
+    background-color: rgba(90, 168, 255, 255);
+    color: rgba(0, 0, 0, 255);
+    padding-bottom: 1px;
+    margin-bottom: 34px;
+}
+
+.start-button:hover {
+    font-size: 65%;
+    border-top-left-radius: 13px;
+    border-bottom-left-radius: 13px;
+    border-top-right-radius: 13px;
+    border-bottom-right-radius: 13px;
+    background-color: rgb(105, 175, 255);
+    color: rgb(0, 0, 0);
+    padding-bottom: 1px;
+    margin-bottom: 34px;
+    -unity-font-style: normal;
+}
+
+.start-button:active {
+    font-size: 60%;
+    border-top-left-radius: 13px;
+    border-bottom-left-radius: 13px;
+    border-top-right-radius: 13px;
+    border-bottom-right-radius: 13px;
+    background-color: rgb(40, 140, 255);
+    color: rgb(0, 0, 0);
+    padding-bottom: 1px;
+    margin-bottom: 34px;
+}

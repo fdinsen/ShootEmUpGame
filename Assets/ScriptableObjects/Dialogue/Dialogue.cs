@@ -7,7 +7,7 @@ public class Dialogue : ScriptableObject
 {
     public string characterName;
 
-    [TextArea] public string content;
+    [TextArea] public string[] content;
 
     public Dialogue nextDialogue = null;
 

@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="buttons.uss" />
+    <ui:VisualElement name="Background" style="height: 48px; flex-grow: 1; justify-content: center; align-items: center;">
+        <ui:VisualElement name="MenuBackground" style="width: 473px; height: 388px; background-color: rgb(255, 255, 255); border-top-left-radius: 30px; border-bottom-left-radius: 30px; border-top-right-radius: 30px; border-bottom-right-radius: 30px; justify-content: flex-start; align-items: center;">
+            <ui:Label text="Space Game" display-tooltip-when-elided="true" name="Title" style="font-size: 57%; color: rgb(0, 0, 0); -unity-font-style: bold; margin-bottom: 16%; margin-top: 20px;" />
+            <ui:Button text="Start" display-tooltip-when-elided="true" name="StartButton" class="start-button" style="font-size: 50px;" />
+            <ui:VisualElement name="Horizontal" style="flex-direction: row;">
+                <ui:Button text="Settings" display-tooltip-when-elided="true" name="Settings" style="font-size: 24%; margin-left: 6px; margin-right: 6px;" />
+                <ui:Button text="Exit" display-tooltip-when-elided="true" name="ExitGame" style="font-size: 24%; padding-left: 6px; margin-left: 6px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

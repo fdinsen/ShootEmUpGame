@@ -14,7 +14,13 @@ public class PlayerInteract : MonoBehaviour
         _playerInput = new PlayerInput();
         _playerInput.CombatMovement.Disable();
         _playerInput._2DMovement.Enable();
+
         _playerInput._2DMovement.Interact.performed += ctx => Interact();
+        PlayerMovement.ToggleMovement += ToggleInteract;
+    }
+    void OnDisable()
+    {
+        _playerInput._2DMovement.Disable();
     }
 
     // Update is called once per frame
@@ -24,6 +30,18 @@ public class PlayerInteract : MonoBehaviour
         foreach(Collider col in interacted)
         {
             col.GetComponent<IInteractable>().Interact();
+        }
+    }
+
+    void ToggleInteract(bool toEnable)
+    {
+        if (toEnable)
+        {
+            _playerInput._2DMovement.Enable();
+        }
+        else
+        {
+            _playerInput._2DMovement.Disable();
         }
     }
 }

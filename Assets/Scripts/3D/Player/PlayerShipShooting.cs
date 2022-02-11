@@ -22,6 +22,10 @@ public class PlayerShipShooting : MonoBehaviour
         _playerInput.CombatMovement.PrimaryAttack.started += ctx => BeginShooting();
         _playerInput.CombatMovement.PrimaryAttack.canceled += ctx => EndShooting();
     }
+    void OnDisable()
+    {
+        _playerInput.CombatMovement.Disable();
+    }
 
     // Update is called once per frame
     void Update()

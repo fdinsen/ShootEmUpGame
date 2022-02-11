@@ -15,6 +15,11 @@ public class PlayerShipMovement : MonoBehaviour
         _playerInput._2DMovement.Disable();
     }
 
+    void OnDisable()
+    {
+        _playerInput.CombatMovement.Disable();
+    }
+
     // FixedUpdate is called 50 times per second
     void Update()
     {

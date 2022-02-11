@@ -17,6 +17,11 @@ public class PlayerShipRotation : MonoBehaviour
         _crosshair.parent = null;
     }
 
+    void OnDisable()
+    {
+        _playerInput.CombatMovement.Disable();
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
