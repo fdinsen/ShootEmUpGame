@@ -5,8 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider))]
 public class NPCHandler : MonoBehaviour, IInteractable
 {
-    [SerializeField] private Dialogue _dialogue;
-
+    private Dialogue _dialogue;
+    public event IInteractable.InteractionEvent OnInteract;
     public Dialogue GetDialogue()
     {
         return _dialogue;
@@ -14,14 +14,19 @@ public class NPCHandler : MonoBehaviour, IInteractable
 
     public void Interact()
     {
+        OnInteract.Invoke();
         if (_dialogue != null)
         {
-            DialogueHandler.InvokeDialogue(GetDialogue().content);
+            DialogueHandler.InvokeDialogue(GetDialogue());
             _dialogue = _dialogue.nextDialogue;
         } 
         else
         {
             DialogueHandler.InvokeDialogue(null);
         }
+    }
+    public void SetDialogue(Dialogue dialogue)
+    {
+        _dialogue = dialogue;
     }
 }

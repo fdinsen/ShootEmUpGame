@@ -6,6 +6,9 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed = 0.1f;
 
+    public delegate void ToggleMovementEvent(bool toggleOn);
+    public static event ToggleMovementEvent ToggleMovement;
+
     private PlayerInput _playerInput;
     private Animator _anim;
     private CharacterController _charContr;
@@ -19,6 +22,12 @@ public class PlayerMovement : MonoBehaviour
         _charContr = GetComponent<CharacterController>();
         _anim = GetComponent<Animator>();
         moveBy = new Vector3();
+
+        ToggleMovement += ToggleMovement;
+    }
+    void OnDisable()
+    {
+        _playerInput._2DMovement.Disable();
     }
 
     // Update is called once per frame
@@ -47,11 +56,15 @@ public class PlayerMovement : MonoBehaviour
     {
         if(toEnable)
         {
-            _playerInput._2DMovement.Movement.Enable();
+            _playerInput._2DMovement.Enable();
         } else
         {
-            _playerInput._2DMovement.Movement.Disable();
+            _playerInput._2DMovement.Disable();
         }
-            
+    }
+
+    public static void InvokeToggleMovement(bool toggleOn)
+    {
+        ToggleMovement.Invoke(toggleOn);
     }
 }

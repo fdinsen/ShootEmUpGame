@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class PlayerShipAbilityHandler : MonoBehaviour
 {
-    [SerializeField] private AbilityAction _abilityActionSlot1;
-    [SerializeField] private AbilityAction _abilityActionSlot2;
-    [SerializeField] private AbilityAction _abilityActionSlot3;
+    //[SerializeField] private ActiveAbilities _activeAbilities;
 
     private float[] _abilityActionCooldowns = {0f,0f,0f};
     private PlayerInput _playerInput;
@@ -17,23 +15,28 @@ public class PlayerShipAbilityHandler : MonoBehaviour
         _playerInput = new PlayerInput();
         _playerInput.CombatMovement.Enable();
         _playerInput._2DMovement.Disable();
-        _playerInput.CombatMovement.AbilitySlot1.performed += ctx => UseAbility(_abilityActionSlot1, 0);
-        _playerInput.CombatMovement.AbilitySlot2.performed += ctx => UseAbility(_abilityActionSlot2, 1);
-        _playerInput.CombatMovement.AbilitySlot3.performed += ctx => UseAbility(_abilityActionSlot3, 2);
+        _playerInput.CombatMovement.AbilitySlot1.performed += ctx => UseAbility(PlayerActiveAbilities.AbilitySlot1, 0);
+        _playerInput.CombatMovement.AbilitySlot2.performed += ctx => UseAbility(PlayerActiveAbilities.AbilitySlot2, 1);
+        _playerInput.CombatMovement.AbilitySlot3.performed += ctx => UseAbility(PlayerActiveAbilities.AbilitySlot3, 2);
+    }
+    void OnDisable()
+    {
+        _playerInput.CombatMovement.Disable();
     }
     
-    void UseAbility(AbilityAction action, int cooldownIndex)
+    void UseAbility(Ability action, int cooldownIndex)
     {
         if(_abilityActionCooldowns[cooldownIndex] <= 0f)
         {
             action.PerformAbility();
-            _abilityActionCooldowns[cooldownIndex] = _abilityActionSlot1.GetAbilityCooldown();
+            _abilityActionCooldowns[cooldownIndex] = action.cooldown;
         }
     }
 
     void Update()
     {
         CountDownCooldownList(_abilityActionCooldowns);
+        Debug.Log(PlayerActiveAbilities.AbilitySlot1.name);
     }
 
     void CountDownCooldownList(float[] listOfCooldowns)
